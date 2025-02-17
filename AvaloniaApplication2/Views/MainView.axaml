@@ -19,6 +19,8 @@
         </TreeDataTemplate>
       </TreeView.DataTemplates>
     </TreeView>
+    
+    
     <Grid RowDefinitions="*, 50" Grid.Column="1" Grid.Row="1">
       <DataGrid AutoGenerateColumns="False" BorderThickness="1" BorderBrush="Black" Name="EmployeeDg">
         <DataGrid.Columns>
