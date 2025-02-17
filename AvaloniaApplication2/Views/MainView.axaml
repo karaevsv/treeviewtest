@@ -1,0 +1,36 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:AvaloniaApplication2.ViewModels"
+             xmlns:data="clr-namespace:AvaloniaApplication2.Data"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AvaloniaApplication2.Views.MainView"
+             x:DataType="vm:MainViewModel">
+  <Grid ColumnDefinitions="*, *" RowDefinitions="50, *">
+    <StackPanel Orientation="Horizontal">
+      <Image Source="/Assets/Logo.png" Width="50"/>
+      <Label Content="Организационная структура"/>
+    </StackPanel>
+    <TreeView Name="OrganizationTw" Grid.Row="1" SelectionChanged="TreeView_SelectionChanged">
+      <TreeView.DataTemplates>
+        <TreeDataTemplate DataType="data:Subdivision" ItemsSource="{Binding InverseSubdivisionNavigation}">
+          <Label Content="{Binding Name}"/>
+        </TreeDataTemplate>
+      </TreeView.DataTemplates>
+    </TreeView>
+    <Grid RowDefinitions="*, 50" Grid.Column="1" Grid.Row="1">
+      <DataGrid AutoGenerateColumns="False" BorderThickness="1" BorderBrush="Black" Name="EmployeeDg">
+        <DataGrid.Columns>
+          <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}"/>
+          <DataGridTextColumn Header="Кабинет" Binding="{Binding CabNum}"/>
+          <DataGridTextColumn Header="Структурное подразделение" Binding="{Binding Subdivision.Name}"/>
+        </DataGrid.Columns>
+      </DataGrid>
+      <StackPanel Grid.Row="1" Orientation="Horizontal">
+        <Button Content="Добавить" Name="AddBtn" Click="Button_Click"/>
+        <Button Content="&#9998;" Name="EditBtn" Click="Button_Click_1"/>
+      </StackPanel>
+    </Grid>
+  </Grid>
+</UserControl>
